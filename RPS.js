@@ -122,3 +122,4 @@ game();
 
 // 3/20/22: To work on, need to write the round(). Also need to come up with an easier way to do a counter. 
 //Maybe fixing the array so that all the winning messages are in the front? 
+//3/22/22: Finally finished. Added a final score tally and fixed the bugs I saw. Played the game a couple times
