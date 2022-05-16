@@ -10,6 +10,7 @@ function computerPlay(choices) {
 
 //Going to create global variables that I can use for a win tally
 
+var count = 0;
 var CWin = 0; 
 var PWin = 0;
 var pcTie = 0; //p(layer)c(omputer)Tie
@@ -27,6 +28,8 @@ function game_new(e) {
     //of the event
     //alert(player);
     //Going to compare the event with the computer option
+    
+    //Player picks rock
     if (player == "Rock" && computer == "Rock"){
         pcTie = pcTie + 1; 
     }
@@ -36,12 +39,53 @@ function game_new(e) {
     else if (player == "Rock" && computer == "Paper"){
         CWin = CWin + 1;
     }
+    
+    //Player picks paper 
+    else if (player == "Paper" && computer == "Rock") {
+        PWin++;
+    }
+    else if (player == "Paper" && computer == "Scissors") {
+        CWin++;
+    }
+    else if (player == "Paper" && computer == "Paper") {
+        pcTie++;
+    }
+
+    //Player picks scissors 
+    else if (player == "Scissors" && computer == "Rock") { 
+        CWin++;
+    }
+    else if (player == "Scissors" && computer == "Scissors") { 
+        pcTie++; 
+    }
+    else if (player == "Scissors" && computer == "Paper") { 
+        PWin++;
+    }
+
     console.log("Count:" + PWin + " to " + CWin + " to " + pcTie);
-    tally.textContent = "Count: " + PWin + " to " + CWin + " to " + pcTie;
+    tally.textContent = "Player Score: " + PWin + "Computer Score: " + CWin + "Ties: " + pcTie; 
+    count++; //Instead of doing a for loop I'm going to do a counter. Then I'll put an if statement 
+    //that says game over at five
+    if (count == 5) {
+        if (PWin > CWin){
+            alert("Game over! Congrats, You Won!!")
+        }
+        else if (PWin < CWin){
+            alert("Game over! Sorry you lost!!")
+        }
+        else {
+            alert("Game over! It's a tie!!")
+        }
+        count = 0;
+        CWin = 0; 
+        PWin = 0; 
+        pcTie = 0;
+    }
+    console.log(count);
 }
 
 //5/14/22: The below is the first attempt at creating a tally.
-//It shows the count and updates with each click. However 
+//It shows the count and updates with each click.
 const container = document.querySelector("#container");
 const tallyscreen = document.createElement("div");
     tallyscreen.style.cssText = "background: yellow; border-style: solid;";
@@ -52,7 +96,8 @@ const tally = document.createElement('p');
 container.appendChild(tally);
 
 const buttons = document.querySelectorAll('button');
+ 
 buttons.forEach(buttons => { 
-buttons.addEventListener('click', game_new); 
-});
+buttons.addEventListener('click', game_new);
+}); 
 
