@@ -19,7 +19,7 @@ var pcTie = 0; //p(layer)c(omputer)Tie
 //and compares it the value it gets from the computerPlay function
 function game_new(e) {
     const computer = computerPlay(choices); 
-    winner = 0;
+
     tally.textContent = "";
     //console.log(e.target); 
     console.log(computer);
@@ -63,10 +63,10 @@ function game_new(e) {
     }
 
     console.log("Count:" + PWin + " to " + CWin + " to " + pcTie);
-    tally.textContent = "Player Score: " + PWin + "Computer Score: " + CWin + "Ties: " + pcTie; 
-    count++; //Instead of doing a for loop I'm going to do a counter. Then I'll put an if statement 
-    //that says game over at five
-    if (count == 5) {
+    tally.textContent = "Player Score: " + PWin + " Computer Score: " + CWin + " Ties: " + pcTie; 
+    count++;
+    //This stops the game when either player, the computer gets to 5 points. Or if there are 5 ties.
+    if (PWin == 5 || CWin == 5 || pcTie == 5) {
         if (PWin > CWin){
             alert("Game over! Congrats, You Won!!")
         }
